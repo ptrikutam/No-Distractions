@@ -6,10 +6,11 @@ Much thank to Artem Gordinsky's open source [Spotifree](https://github.com/Artem
 
 ### Installation
 
-* Copy the no-distractions.applescript into an Apple Script Editor and Save as an application. Make sure to check "Stay open after run handler"
+* Copy the no-distractions.applescript into an Apple Script Editor and Save as an application named "No Distractions.app". Make sure to check "Stay open after run handler".
+* Once saved, make sure to change the bundle identifier to "com.ptrikutam.NoDistractions" so that the script will perform properly.
+* Drag & Drop the .app file into your /Applications folder, then run it.
 
-
-* If you want to prevent the icon from appearing in your dock, open up the package contents of the No Distractions.app once it's been created and edit the info. You'll want to add the following line:
+* If you want to prevent the icon from appearing in your dock (I do this to ensure extra stealthy distraction prevention), open up the package contents of the No Distractions.app once it's been created and edit the info. You'll want to add the following line:
 
 ```
 <key>LSUIElement</key>
