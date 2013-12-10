@@ -1,11 +1,16 @@
 -- TODO: incrementally increase the obscenities
+
 -- TODO: Support for Firefox
-	-- Looks like this will be tough. Firefox Applescript Support is limited: https://wiki.mozilla.org/Mac:AppleScript
-	-- Some Hacky Solutions listed here: http://stackoverflow.com/questions/5296995/macosx-or-applescript-get-current-url-from-firefox
+-- Looks like this will be tough. Firefox Applescript Support is limited: https://wiki.mozilla.org/Mac:AppleScript
+-- Some Hacky Solutions listed here: http://stackoverflow.com/questions/5296995/macosx-or-applescript-get-current-url-from-firefox
+
 -- TODO: Support for QuickSilver, Growl, and other versions of OS X (that don't use notifications)
 -- TODO: Ability to add / remove websites you frequent. For me, this is Reddit, Facebook, Twitter, & Imgur.
 -- TODO: Smarter code that makes sure we're closing the right tab.
-property debug : false
+
+
+-- MUCH of this script was adapted from Artem Gordinsky's Spotifree script: https://github.com/ArtemGordinsky/SpotiFree
+property debug : true
 property scoldString : "GET BACK TO WORK"
 property idleTime : 1
 
@@ -18,8 +23,22 @@ on idle
 end idle
 
 
--- This has been stolen shamelessly (and slightly modified) from:
--- https://github.com/ArtemGordinsky/SpotiFree/blob/master/SpotiFree.applescript#L159
+if (isTheFirstRun() and not isInLoginItems()) then
+	set userAnswer to the button returned of (display dialog "Thanks for installing No Distractions!" & ¬
+		return & "No distractions is meant to run without an interface, silenty in the background." & return & return ¬
+		& "Do you want it to run automatically on startup?" with title ¬
+		"No Distractions" with icon 1 buttons {"No, thanks", "OK"} default button 2)
+	if (userAnswer = "OK") then
+		try
+			my addToLoginItems()
+		end try
+	end if
+	try
+		-- Save in the preferences that No Distractions has already ran.
+		do shell script "defaults write com.ptrikutam.NoDistractions 'hasRanBefore' 'true'"
+	end try
+end if
+
 on addToLoginItems()
 	try
 		tell application "System Events"
@@ -32,9 +51,26 @@ on addToLoginItems()
 	end try
 end addToLoginItems
 
+on isTheFirstRun()
+    local isPrefFileExists, prefFilePath
+    set prefFilePath to "~/Library/Preferences/com.ptrikutam.NoDistractions.plist"
+    try
+        tell application "System Events"
+            if exists file prefFilePath then
+                set isPrefFileExists to true
+            else
+                set isPrefFileExists to false
+            end if
+        end tell
+    on error errorMessage number errorNumber
+        my log_error(errorNumber, errorMessage, "isTheFirstRun()")
+        return true
+    end try
+    -- "not" works like a bang sign here
+    return not isPrefFileExists
+end isTheFirstRun
 
--- This snippet was taken & modified from:
--- https://github.com/ArtemGordinsky/SpotiFree/blob/master/SpotiFree.applescript#L190
+
 on isInLoginItems()
 	try
 		tell application "System Events"
@@ -59,7 +95,7 @@ end isRunning
 
 
 on currentTab(frontApp)
-	try 
+	try
 		if frontApp is equal to "Google Chrome" then
 			tell application "Google Chrome"
 				return URL of active tab of first window
@@ -129,14 +165,12 @@ on log_error(error_number, error_message, diag_message)
 			& return & "Error message: " & error_message & return & ¬
 			"Diagnostic message: " & diag_message & return ¬
 			& "" & return)
-		set log_file to (((path to desktop folder) as text) & "Spotifree_log.txt")
+		set log_file to (((path to desktop folder) as text) & "no_distractions_log.txt")
 		my write_to_file(content, log_file, true)
 	end if
 end log_error
 
 
--- Again, Spotifree comes to the rescue. This stuff is great.
--- https://github.com/ArtemGordinsky/SpotiFree/blob/master/SpotiFree.applescript#L205
 on write_to_file(this_data, target_file, append_data) -- (string, file path as string, boolean)
 	try
 		set the target_file to the target_file as text
