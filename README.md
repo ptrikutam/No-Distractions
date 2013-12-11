@@ -18,14 +18,17 @@ Much thank to Artem Gordinsky's open source [Spotifree](https://github.com/Artem
 ```
 
 ### TODO / Remaining Features
-* Incrementally increase the obscenities as keep ignoring the repeated instructions to "GET BACK TO WORK"
 
+* GUI
+	* Menu Icon in status bar to show status of "No Distractions"
+	* Ability to add / remove websites you frequent. For me, this is Reddit, Facebook, Twitter, & Imgur.
+	* Ability to disable the app for periods of time
+	* Ability to put "disable" command behind a few math problems -- to make sure people really want to goof off :)
+* Incrementally increase the obscenities as keep ignoring the repeated instructions to "GET BACK TO WORK"
 * Support for Firefox
 	* Looks like this will be tough. Firefox Applescript Support is limited: https://wiki.mozilla.org/Mac:AppleScript
 	* Some Hacky Solutions listed here: http://stackoverflow.com/questions/5296995/macosx-or-applescript-get-current-url-from-firefox
-
 * Support for QuickSilver, Growl, and other versions of OS X (that don't use notifications)
-* Ability to add / remove websites you frequent. For me, this is Reddit, Facebook, Twitter, & Imgur.
 * Smarter code that makes sure we're closing the right tab-- right now it does a check then immediately closes the nearest focused tab (not great, but does the trick so far).
 
 
