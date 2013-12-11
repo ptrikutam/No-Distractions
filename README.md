@@ -17,6 +17,16 @@ Much thank to Artem Gordinsky's open source [Spotifree](https://github.com/Artem
 <string>1</string>
 ```
 
+### Quitting the Application
+
+To quit, just right click the icon on the dock and quit. If you used the little snippet in your info.plist above, you'll need to open up your Activity Monitor and quit from there:
+
+* Open the Activity Monitor: /Applications/Utilities/Activity Monitor
+* Type "No Distractions" in the search box at the top right, highlight the process
+* Click the stop button at the top
+
+That should be it! This will be improved soon, I promise.
+
 ### TODO / Remaining Features
 
 * GUI
