@@ -1,15 +1,5 @@
--- TODO: incrementally increase the obscenities
-
--- TODO: Support for Firefox
--- Looks like this will be tough. Firefox Applescript Support is limited: https://wiki.mozilla.org/Mac:AppleScript
--- Some Hacky Solutions listed here: http://stackoverflow.com/questions/5296995/macosx-or-applescript-get-current-url-from-firefox
-
--- TODO: Support for QuickSilver, Growl, and other versions of OS X (that don't use notifications)
--- TODO: Ability to add / remove websites you frequent. For me, this is Reddit, Facebook, Twitter, & Imgur.
--- TODO: Smarter code that makes sure we're closing the right tab.
-
-
 -- MUCH of this script was adapted from Artem Gordinsky's Spotifree script: https://github.com/ArtemGordinsky/SpotiFree
+-- Thanks Artem!
 property debug : true
 property scoldString : "GET BACK TO WORK"
 property idleTime : 1
