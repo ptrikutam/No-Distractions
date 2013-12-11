@@ -34,4 +34,4 @@ This has only been tested on my computer running OS X 10.9 (13A603) using Google
 
 ### License
 
-Do whatever the hell you want with this, but if it's useful, feel free to give me a shout-out. 
+MIT. Do whatever the hell you want with this, but if it's useful, feel free to give me a shout-out. 
